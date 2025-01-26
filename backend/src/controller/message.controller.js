@@ -63,7 +63,8 @@ const sendMessage = async (req, res) => {
 
 const MessageController = {
   getSidebarContacts: (req, res) => getSidebarContacts(req, res),
-  getMessages: (req, res) => getMessages(req, res)
+  getMessages: (req, res) => getMessages(req, res),
+  sendMessage: (req, res) => sendMessage(req, res)
 };
 
 export default MessageController;
