@@ -56,7 +56,7 @@ const login = async (req, res) => {
     if(!email || !password) return res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
 
     const user = await User.findOne({ email });
-    const correctPassword = await bcrypt.compare(password, (user.password || ''));
+    const correctPassword = await bcrypt.compare(password, (user ? user.password : ''));
     if(!user || !correctPassword) return res.status(400).json({ message: 'Credenciais inválidas!' });
 
     generateToken(user._id, res);
