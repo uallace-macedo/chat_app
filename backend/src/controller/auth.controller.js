@@ -7,7 +7,7 @@ const checkAuth = async (req, res) => {
   try {
     res.status(200).json(req.user);
   } catch (error) {
-    console.error('> ERRO: CheckAuth_controller = ' + error.message);
+    console.error('> ERRO [auth.controller.js]: CheckAuth_controller = ' + error.message);
     res.status(500).json({ message: 'Erro interno no servidor.' });
   }
 }
@@ -44,14 +44,13 @@ const signup = async (req, res) => {
       res.status(400).json({ message: 'Dados de usuário inválidos!' });
     }
   } catch (error) {
-    console.error('> ERRO: Signup_controller = ' + error.message);
+    console.error('> ERRO [auth.controller.js]: Signup_controller = ' + error.message);
     res.status(500).json({ message: 'Erro interno no servidor.' });
   }
 }
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
   try {
     if(!email || !password) return res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
 
@@ -68,7 +67,7 @@ const login = async (req, res) => {
     })
 
   } catch (error) {
-    console.error('> ERRO: Login_controller = ' + error.message);
+    console.error('> ERRO [auth.controller.js]: Login_controller = ' + error.message);
     res.status(500).json({ message: 'Erro interno no servidor.' });
   }
 }
@@ -95,7 +94,7 @@ const updateProfile = async (req, res) => {
     res.status(200).json(updatedUser);
 
   } catch (error) {
-    console.error('> ERRO: UpdateProfile_controller = ' + error.message);
+    console.error('> ERRO [auth.controller.js]: UpdateProfile_controller = ' + error.message);
     res.status(500).json({ message: 'Erro interno no servidor.' });
   }
 }

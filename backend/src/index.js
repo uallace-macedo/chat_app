@@ -5,11 +5,10 @@ import cors from 'cors';
 
 import routes from './routes/index.js';
 import { connectDB } from './lib/db.js';
+import { configureCloudinary } from './lib/cloudinary.js';
 
 const envFile = `.env.${process.env.NODE_ENV}`;
 dotenv.config({ path: envFile });
-
-const PORT = process.env.PORT;
 
 const app = express();
 app.use(express.json());
@@ -21,7 +20,9 @@ app.use(cors({
 }));
 app.use('/api/v1/', routes);
 
-app.listen(PORT, () => {
-  console.log(`Running as http://localhost:${PORT}/`)
+app.listen(process.env.PORT, () => {
+  console.log(`Running as http://localhost:${process.env.PORT}/`)
+  
   connectDB();
+  configureCloudinary()
 });
