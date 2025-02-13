@@ -7,12 +7,14 @@ import LoginPage from './pages/LoginPage';
 import SettingsPage from './pages/SettingsPage';
 import ProfilePage from './pages/ProfilePage';
 
-import { useAuthStore } from './store/useAuthStore';
 import { useEffect } from 'react';
+import { useAuthStore } from './store/useAuthStore';
+import { useThemeStore } from './store/useThemeStore';
 import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
+  const { theme } = useThemeStore();
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
   useEffect(() => {
     checkAuth();
@@ -24,7 +26,7 @@ const App = () => {
     </div>
   )
   return (
-    <>
+    <div data-theme={ theme }>
       <Navbar />
       <Routes>
         <Route path='/' element={authUser ? <HomePage /> : <Navigate to='/login' />}/>
@@ -34,7 +36,7 @@ const App = () => {
         <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to='/login' />}/>
       </Routes>
       <Toaster toastOptions={{duration: 3000}} />
-    </>
+    </div>
   );
 };
 
